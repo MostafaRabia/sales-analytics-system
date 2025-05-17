@@ -19,3 +19,5 @@
     php artisan serve
     php websocket-server.php // for the web-socket server
 Then you can use Postman to call the endpoints and test the websocket
+
+### [Demo](https://drive.google.com/file/d/1Xpfo19mvrh5OV66uIxzud0MmuoACQ2oB/view?usp=drive_link)
