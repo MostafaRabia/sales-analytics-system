@@ -9,7 +9,11 @@ class BroadcastService
     public function __construct()
     {
         if (!isset(self::$socket)) {
-            self::$socket = fsockopen("127.0.0.1", 8080, $errno, $errstr, 30);
+            try {
+                self::$socket = fsockopen(config('websocket.url'), config('websocket.port'), $errno, $errstr, 30);
+            } catch (\Exception $e) {
+                return;
+            }
 
             $key = base64_encode(random_bytes(16));
 
@@ -55,6 +59,10 @@ class BroadcastService
 
     public function sendMessage(array $message): void
     {
+        if (!isset(self::$socket)) {
+            return;
+        }
+
         fwrite(self::$socket, $this->encodeWebSocketMessage('/broadcast '.json_encode($message)));
     }
 }

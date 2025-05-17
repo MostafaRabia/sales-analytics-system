@@ -92,7 +92,6 @@ class OrderController extends Controller
 
         return Response::apiResponse(
             HttpStatus::NO_CONTENT,
-            message: 'Order deleted successfully'
         );
     }
 }

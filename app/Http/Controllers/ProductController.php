@@ -66,10 +66,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->delete();
+
         return Response::apiResponse(
-            HttpStatus::OK,
-            new ProductResource(tap($product, fn (Product $product) => $product->delete())),
-            'Product deleted successfully'
+            HttpStatus::NO_CONTENT,
         );
     }
 }

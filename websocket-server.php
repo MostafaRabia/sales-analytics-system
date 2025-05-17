@@ -12,9 +12,13 @@ ini_set('display_errors', 1);
 // Set time limit to infinity to keep the server running
 set_time_limit(0);
 
+require __DIR__.'/vendor/autoload.php';
+
+$config = include __DIR__ . '/config/websocket.php';
+
 // Configuration
-$host = '127.0.0.1';
-$port = 8080;
+$host = $config['url'];
+$port = $config['port'];
 $clients = [];
 $max_clients = 10;
 
